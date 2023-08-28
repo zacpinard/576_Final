@@ -141,6 +141,7 @@
                 "collapseEnabled": false  // add this line
             }
 
+            /*
             // Create featurelayer from feature service 
             const sightingslayer = new FeatureLayer({ 
                 // URL to the service 
@@ -151,10 +152,46 @@
                 popupTemplate: chagaPopup,
                 dockOptions: false
             });
+            */
+
+            fetch('/api/chaga-sightings')
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Convert the data to the appropriate format for a FeatureLayer
+                    const chagaSightings = {
+                    type: "feature",
+                    features: data.map(sighting => ({
+                        type: "Feature",
+                        geometry: {
+                        type: "Point",
+                        coordinates: [sighting.long, sighting.lat]
+                        },
+                        properties: sighting
+                    }))
+                    };
+
+                    // Create the FeatureLayer
+                    const sightingslayer = new FeatureLayer({
+                        source: chagaSightings,
+                        renderer: chagaRenderer, 
+                        popupTemplate: chagaPopup, 
+                        });
+
+                    // Add the layer to the map (assuming 'map' is defined elsewhere)
+                    map.add(sightingslayer);
+
+                    // Continue with the rest of your code
+                })
 
             //Add layer to map
             map.add(sightingslayer);
 
+            /*
             const WIBorderRenderer = {
                 type: "simple",
                 symbol: {
@@ -164,7 +201,7 @@
                     width: 2
                 }
             }
-
+            
             // Create another featurelayer from feature service 
             const WIBorderlayer = new FeatureLayer({ 
                 // URL to the service 
@@ -174,6 +211,7 @@
 
             //Add border layer to map
             map.add(WIBorderlayer);
+            */
 
             // Add the locate widget to the top left corner of the view
             view.ui.add(locateBtn, {
@@ -210,8 +248,32 @@
   </head>
   <body>
    
-    <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
-    
+    <!--
+        <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
+    /!-->
+
+    <form id="chaga-form">
+        <label for="who">Who saw the chaga:</label>
+        <input type="text" id="who" name="who" required>
+      
+        <label for="date">Date of sighting:</label>
+        <input type="date" id="date" name="date" required>
+      
+        <label for="harvested">Was the chaga harvested?</label>
+        <input type="checkbox" id="harvested" name="harvested">
+      
+        <label for="comment">Other info:</label>
+        <textarea id="comment" name="comment"></textarea>
+      
+        <label for="latitude">Latitude:</label>
+        <input type="number" id="latitude" name="latitude" required>
+
+        <label for="longitude">Longitude:</label>
+        <input type="number" id="longitude" name="longitude" required>
+      
+        <input type="submit" value="Submit">
+    </form>
+
     <!--<style>
         h1 {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
