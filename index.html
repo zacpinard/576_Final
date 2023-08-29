@@ -241,6 +241,38 @@
                 breakpoint: false,
             }
 
+            document.getElementById('chaga-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Gather form data
+                const formData = {
+                    who: e.target.who.value,
+                    date: e.target.date.value,
+                    harvested: e.target.harvested.checked,
+                    comment: e.target.comment.value,
+                    latitude: e.target.latitude.value,
+                    longitude: e.target.longitude.value
+                };
+
+                // Validate the data if needed
+
+                // Send data to server
+                fetch('/api/chaga-sightings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle success (e.g., display a success message, update the map, etc.)
+                })
+                .catch(error => {
+                    console.error('Error submitting chaga sighting:', error);
+                });
+            });
+
          });
       </script>
       
