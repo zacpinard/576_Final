@@ -252,8 +252,14 @@
         <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
     /!-->
 
+    <a href="chaga-form"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
+
+    <!--
+        <button type="submit" form="chaga-form" value="Submit">Submit</button>
+    /!-->
+
     <form id="chaga-form">
-        <label for="who">Who saw the chaga:</label>
+        <label for="who">Who saw the chaga?:</label>
         <input type="text" id="who" name="who" required>
       
         <label for="date">Date of sighting:</label>
@@ -262,14 +268,14 @@
         <label for="harvested">Was the chaga harvested?</label>
         <input type="checkbox" id="harvested" name="harvested">
       
-        <label for="comment">Other info:</label>
+        <label for="comment">Comments (Optional):</label>
         <textarea id="comment" name="comment"></textarea>
       
-        <label for="latitude">Latitude:</label>
-        <input type="number" id="latitude" name="latitude" required>
+        <label for="lat">Latitude:</label>
+        <input type="number" id="lat" name="lat" required>
 
-        <label for="longitude">Longitude:</label>
-        <input type="number" id="longitude" name="longitude" required>
+        <label for="long">Longitude:</label>
+        <input type="number" id="long" name="long" required>
       
         <input type="submit" value="Submit">
     </form>
