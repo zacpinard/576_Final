@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <title>Chaga Forager</title>
+
+        <style>
+            html,
+            body,
+            #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            }
+
+            .addRecordBtn {
+                position: fixed;
+                left: 10px;
+                right: 10px;
+                text-align: center;
+                z-index: 10;
+                bottom: 25px;
+                background-color: black;
+                color: #F9812A;
+                padding: 8px 16px;
+                outline-style: solid;
+                outline-color: #F9812A;
+                outline-width: 4px;
+                font-size: 30px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .addRecordBtn:hover {
+                background-color: #964000;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <form id="chaga-form">
+            <label for="who">Who saw the chaga?:</label>
+            <input type="text" id="who" name="who" required>
+        
+            <label for="date">Date of sighting:</label>
+            <input type="date" id="date" name="date" required>
+        
+            <label for="harvested">Was the chaga harvested?</label>
+            <input type="checkbox" id="harvested" name="harvested">
+        
+            <label for="comment">Comments (Optional):</label>
+            <textarea id="comment" name="comment"></textarea>
+        
+            <label for="lat">Latitude:</label>
+            <input type="number" id="lat" name="lat" required>
+
+            <label for="long">Longitude:</label>
+            <input type="number" id="long" name="long" required>
+        
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

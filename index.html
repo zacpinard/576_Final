@@ -154,7 +154,8 @@
             });
             */
 
-            fetch('/api/chaga-sightings')
+            fetch('/api/chaga')
+            //need full path name of RDS database
                 .then(response => {
                     if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -181,6 +182,7 @@
                         renderer: chagaRenderer, 
                         popupTemplate: chagaPopup, 
                         });
+                    console.log(chagasightings)
 
                     // Add the layer to the map (assuming 'map' is defined elsewhere)
                     map.add(sightingslayer);
@@ -189,7 +191,7 @@
                 })
 
             //Add layer to map
-            map.add(sightingslayer);
+            //map.add(sightingslayer);
 
             /*
             const WIBorderRenderer = {
@@ -284,33 +286,12 @@
         <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
     /!-->
 
-    <a href="chaga-form"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
+    <a href="form.html"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
+    <!-- update in Adobe Dreamweaver-->
 
     <!--
         <button type="submit" form="chaga-form" value="Submit">Submit</button>
     /!-->
-
-    <form id="chaga-form">
-        <label for="who">Who saw the chaga?:</label>
-        <input type="text" id="who" name="who" required>
-      
-        <label for="date">Date of sighting:</label>
-        <input type="date" id="date" name="date" required>
-      
-        <label for="harvested">Was the chaga harvested?</label>
-        <input type="checkbox" id="harvested" name="harvested">
-      
-        <label for="comment">Comments (Optional):</label>
-        <textarea id="comment" name="comment"></textarea>
-      
-        <label for="lat">Latitude:</label>
-        <input type="number" id="lat" name="lat" required>
-
-        <label for="long">Longitude:</label>
-        <input type="number" id="long" name="long" required>
-      
-        <input type="submit" value="Submit">
-    </form>
 
     <!--<style>
         h1 {
